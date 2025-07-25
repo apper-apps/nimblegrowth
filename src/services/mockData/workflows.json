@@ -1,0 +1,109 @@
+[
+  {
+    "Id": 1,
+    "name": "Weather-Triggered Social Campaign",
+    "description": "Automatically post weather-based content to social media when specific conditions are met",
+    "nodes": [
+      {
+        "id": "weather",
+        "type": "api",
+        "apiId": 2,
+        "name": "Get Weather Data",
+        "position": { "x": 100, "y": 100 }
+      },
+      {
+        "id": "condition",
+        "type": "condition",
+        "name": "Check Rain",
+        "condition": "weather.main === 'Rain'",
+        "position": { "x": 300, "y": 100 }
+      },
+      {
+        "id": "tweet",
+        "type": "api",
+        "apiId": 1,
+        "name": "Post Tweet",
+        "position": { "x": 500, "y": 100 }
+      }
+    ],
+    "connections": [
+      { "from": "weather", "to": "condition" },
+      { "from": "condition", "to": "tweet" }
+    ],
+    "createdAt": "2024-01-15T10:30:00Z",
+    "lastRun": "2024-01-20T14:22:00Z",
+    "successRate": 94.5,
+    "status": "active"
+  },
+  {
+    "Id": 2,
+    "name": "Lead Enrichment Pipeline",
+    "description": "Automatically enrich new leads with company data and trigger personalized email sequences",
+    "nodes": [
+      {
+        "id": "webhook",
+        "type": "trigger",
+        "name": "New Lead Webhook",
+        "position": { "x": 100, "y": 150 }
+      },
+      {
+        "id": "enrich",
+        "type": "api",
+        "apiId": 9,
+        "name": "Clearbit Enrichment",
+        "position": { "x": 300, "y": 150 }
+      },
+      {
+        "id": "email",
+        "type": "api",
+        "apiId": 6,
+        "name": "Send Welcome Email",
+        "position": { "x": 500, "y": 150 }
+      }
+    ],
+    "connections": [
+      { "from": "webhook", "to": "enrich" },
+      { "from": "enrich", "to": "email" }
+    ],
+    "createdAt": "2024-01-12T09:15:00Z",
+    "lastRun": "2024-01-20T16:45:00Z",
+    "successRate": 89.2,
+    "status": "active"
+  },
+  {
+    "Id": 3,
+    "name": "Viral Content Discovery",
+    "description": "Monitor trending topics and automatically create content for multiple social platforms",
+    "nodes": [
+      {
+        "id": "reddit",
+        "type": "api",
+        "apiId": 8,
+        "name": "Reddit Trending",
+        "position": { "x": 100, "y": 200 }
+      },
+      {
+        "id": "generate",
+        "type": "api",
+        "apiId": 10,
+        "name": "Generate Content",
+        "position": { "x": 300, "y": 200 }
+      },
+      {
+        "id": "post",
+        "type": "api",
+        "apiId": 1,
+        "name": "Post to Twitter",
+        "position": { "x": 500, "y": 200 }
+      }
+    ],
+    "connections": [
+      { "from": "reddit", "to": "generate" },
+      { "from": "generate", "to": "post" }
+    ],
+    "createdAt": "2024-01-10T11:20:00Z",
+    "lastRun": "2024-01-19T12:30:00Z",
+    "successRate": 76.8,
+    "status": "paused"
+  }
+]

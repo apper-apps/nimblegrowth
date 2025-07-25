@@ -1,0 +1,146 @@
+[
+  {
+    "Id": 1,
+    "title": "Weather-Based Email Campaigns",
+    "description": "Automatically send targeted email campaigns based on local weather conditions to boost engagement and sales",
+    "requiredAPIs": ["OpenWeatherMap", "Mailchimp Marketing"],
+    "difficulty": "Beginner",
+    "estimatedROI": "25-40%",
+    "uses": 1247,
+    "category": "Email Marketing",
+    "tags": ["weather", "email", "automation", "personalization"],
+    "steps": [
+      "Connect OpenWeatherMap API to get weather data for your target locations",
+      "Set up weather condition triggers (rain, snow, extreme heat, etc.)",
+      "Create targeted email templates for each weather condition",
+      "Use Mailchimp API to send personalized campaigns to location-based segments"
+    ],
+    "codeSnippet": "// Weather-triggered email example\nconst weather = await fetch('weather-api');\nif (weather.main === 'Rain') {\n  await sendEmail('rainy-day-offer');\n}"
+  },
+  {
+    "Id": 2,
+    "title": "AI-Powered Social Media Automation",
+    "description": "Use GPT-4 to generate contextual social media responses and comments at scale for maximum engagement",
+    "requiredAPIs": ["Twitter API v2", "OpenAI GPT-4", "Reddit API"],
+    "difficulty": "Intermediate",
+    "estimatedROI": "50-75%",
+    "uses": 892,
+    "category": "Social Media",
+    "tags": ["ai", "automation", "engagement", "scaling"],
+    "steps": [
+      "Set up monitoring for brand mentions and relevant hashtags",
+      "Use GPT-4 to generate contextual, brand-appropriate responses",
+      "Implement sentiment analysis to ensure positive engagement",
+      "Auto-post responses with human oversight for quality control"
+    ],
+    "codeSnippet": "// AI response generation\nconst mention = await twitter.getMentions();\nconst response = await openai.generateResponse(mention.text);\nawait twitter.reply(mention.id, response);"
+  },
+  {
+    "Id": 3,
+    "title": "Dynamic Content Personalization",
+    "description": "Automatically update website content based on visitor data, weather, trends, and other external factors",
+    "requiredAPIs": ["Unsplash Photos", "OpenWeatherMap", "Google Analytics 4"],
+    "difficulty": "Advanced",
+    "estimatedROI": "30-60%",
+    "uses": 634,
+    "category": "Content",
+    "tags": ["personalization", "dynamic", "conversion", "ux"],
+    "steps": [
+      "Analyze visitor behavior patterns with Google Analytics",
+      "Fetch relevant images from Unsplash based on visitor interests",
+      "Adjust content based on local weather and time of day",
+      "A/B test different personalization strategies"
+    ],
+    "codeSnippet": "// Dynamic hero image\nconst weather = await getWeather(userLocation);\nconst image = await unsplash.search(weather.condition);\nupdateHeroImage(image.urls.regular);"
+  },
+  {
+    "Id": 4,
+    "title": "Automated Lead Scoring & Nurturing",
+    "description": "Score leads automatically based on behavior and trigger personalized nurturing sequences",
+    "requiredAPIs": ["Clearbit Enrichment", "Mailchimp Marketing", "Google Analytics 4"],
+    "difficulty": "Advanced",
+    "estimatedROI": "40-80%",
+    "uses": 1089,
+    "category": "Lead Generation",
+    "tags": ["scoring", "nurturing", "automation", "conversion"],
+    "steps": [
+      "Enrich lead data with Clearbit for company information",
+      "Score leads based on company size, industry, and behavior",
+      "Trigger different email sequences based on lead score",
+      "Track engagement and adjust scoring algorithm"
+    ],
+    "codeSnippet": "// Lead scoring automation\nconst leadData = await clearbit.enrich(email);\nconst score = calculateScore(leadData, behaviorData);\nif (score > 80) await triggerSalesSequence(lead);"
+  },
+  {
+    "Id": 5,
+    "title": "Viral Link Tracking System",
+    "description": "Create trackable links for every piece of content and monitor viral coefficient in real-time",
+    "requiredAPIs": ["Bitly URL Shortener", "Google Analytics 4", "Twitter API v2"],
+    "difficulty": "Intermediate",
+    "estimatedROI": "20-45%",
+    "uses": 756,
+    "category": "Growth Tracking",
+    "tags": ["viral", "tracking", "analytics", "sharing"],
+    "steps": [
+      "Generate unique Bitly links for all content pieces",
+      "Track click patterns and sharing behavior",
+      "Identify high-performing content and amplify",
+      "Calculate viral coefficient and optimize sharing triggers"
+    ],
+    "codeSnippet": "// Viral tracking setup\nconst shortUrl = await bitly.shorten(originalUrl);\nawait analytics.trackEvent('content_shared', {url: shortUrl});\nmonitorViralCoefficient(shortUrl);"
+  },
+  {
+    "Id": 6,
+    "title": "Instagram Contest Automation",
+    "description": "Automatically manage Instagram contests, track participants, and send follow-up messages",
+    "requiredAPIs": ["Instagram Graph API", "Mailchimp Marketing"],
+    "difficulty": "Beginner",
+    "estimatedROI": "35-55%",
+    "uses": 1324,
+    "category": "Social Media",
+    "tags": ["instagram", "contests", "engagement", "growth"],
+    "steps": [
+      "Monitor contest hashtags and mentions",
+      "Automatically collect participant information",
+      "Send thank you messages to all participants",
+      "Add participants to email marketing lists for future campaigns"
+    ],
+    "codeSnippet": "// Contest participant tracking\nconst posts = await instagram.searchHashtag('#contest');\nfor (const post of posts) {\n  await collectParticipant(post.user);\n  await sendThankYou(post.user);\n}"
+  },
+  {
+    "Id": 7,
+    "title": "Developer Onboarding Automation",
+    "description": "Automatically onboard new developers with personalized documentation and code examples",
+    "requiredAPIs": ["GitHub API", "OpenAI GPT-4", "Slack Web API"],
+    "difficulty": "Advanced",
+    "estimatedROI": "60-90%",
+    "uses": 423,
+    "category": "Developer Tools",
+    "tags": ["onboarding", "developers", "automation", "documentation"],
+    "steps": [
+      "Monitor new repository stars and forks",
+      "Generate personalized code examples with GPT-4",
+      "Send welcome messages via Slack or email",
+      "Track developer engagement and success metrics"
+    ],
+    "codeSnippet": "// Developer onboarding\nconst newStars = await github.getNewStars();\nfor (const user of newStars) {\n  const example = await gpt4.generateExample(user.language);\n  await slack.sendWelcome(user, example);\n}"
+  },
+  {
+    "Id": 8,
+    "title": "E-commerce Abandonment Recovery",
+    "description": "Automatically recover abandoned carts with personalized offers and multi-channel follow-ups",
+    "requiredAPIs": ["Shopify Admin API", "Twilio SMS", "Mailchimp Marketing"],
+    "difficulty": "Intermediate",
+    "estimatedROI": "45-70%",
+    "uses": 967,
+    "category": "E-commerce",
+    "tags": ["abandonment", "recovery", "personalization", "multichannel"],
+    "steps": [
+      "Track cart abandonment events from Shopify",
+      "Send immediate email recovery campaign",
+      "Follow up with SMS after 2 hours if no conversion",
+      "Offer progressive discounts based on cart value"
+    ],
+    "codeSnippet": "// Cart abandonment recovery\nconst abandonedCarts = await shopify.getAbandonedCarts();\nfor (const cart of abandonedCarts) {\n  await sendRecoveryEmail(cart);\n  setTimeout(() => sendSMS(cart), 2 * 60 * 60 * 1000);\n}"
+  }
+]

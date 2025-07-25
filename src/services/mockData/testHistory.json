@@ -1,0 +1,100 @@
+[
+  {
+    "Id": 1,
+    "apiId": "1",
+    "endpoint": "/2/tweets/search/recent",
+    "method": "GET",
+    "request": {
+      "query": "growth hacking",
+      "max_results": 10
+    },
+    "response": {
+      "data": [
+        {
+          "id": "1234567890",
+          "text": "Just discovered this amazing growth hacking technique..."
+        }
+      ],
+      "meta": {
+        "result_count": 10
+      }
+    },
+    "timestamp": "2024-01-20T10:30:00Z",
+    "duration": 245,
+    "status": "success",
+    "statusCode": 200
+  },
+  {
+    "Id": 2,
+    "apiId": "2",
+    "endpoint": "/data/2.5/weather",
+    "method": "GET",
+    "request": {
+      "q": "San Francisco",
+      "appid": "demo_key"
+    },
+    "response": {
+      "weather": [
+        {
+          "main": "Clear",
+          "description": "clear sky"
+        }
+      ],
+      "main": {
+        "temp": 285.32,
+        "humidity": 64
+      }
+    },
+    "timestamp": "2024-01-20T09:15:00Z",
+    "duration": 156,
+    "status": "success",
+    "statusCode": 200
+  },
+  {
+    "Id": 3,
+    "apiId": "10",
+    "endpoint": "/v1/chat/completions",
+    "method": "POST",
+    "request": {
+      "model": "gpt-4",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write a growth hacking tweet"
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "content": "🚀 Growth hack of the day: Use weather APIs to trigger location-based marketing campaigns. Rain forecast? Send that umbrella discount! ☂️ #GrowthHacking #Marketing"
+          }
+        }
+      ]
+    },
+    "timestamp": "2024-01-20T08:45:00Z",
+    "duration": 1834,
+    "status": "success",
+    "statusCode": 200
+  },
+  {
+    "Id": 4,
+    "apiId": "3",
+    "endpoint": "/v1/payment_intents",
+    "method": "POST",
+    "request": {
+      "amount": 2000,
+      "currency": "usd"
+    },
+    "response": {
+      "error": {
+        "message": "Invalid API key provided"
+      }
+    },
+    "timestamp": "2024-01-19T16:20:00Z",
+    "duration": 234,
+    "status": "error",
+    "statusCode": 401
+  }
+]
