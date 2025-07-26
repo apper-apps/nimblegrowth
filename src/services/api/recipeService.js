@@ -22,11 +22,29 @@ export const recipeService = {
     return recipesData.filter(recipe => recipe.category === category)
   },
 
-  async getPopular() {
+async getPopular() {
     await delay(200)
     return recipesData
       .sort((a, b) => b.uses - a.uses)
       .slice(0, 6)
+  },
+
+  async getMarketingRecipes() {
+    await delay(200)
+    return recipesData.map(recipe => ({
+      ...recipe,
+      marketingFocus: this.getMarketingFocus(recipe.tags),
+      expectedLeads: Math.floor(Math.random() * 500) + 100,
+      timeToROI: Math.floor(Math.random() * 30) + 7 + " days"
+    }))
+  },
+
+  getMarketingFocus(tags) {
+    if (tags.includes('email')) return 'Email Marketing'
+    if (tags.includes('social')) return 'Social Media Growth'
+    if (tags.includes('analytics')) return 'Conversion Optimization'
+    if (tags.includes('automation')) return 'Marketing Automation'
+    return 'Growth Hacking'
   },
 
   async searchRecipes(query) {

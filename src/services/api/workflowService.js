@@ -81,8 +81,27 @@ export const workflowService = {
     }
   },
 
-  async getActiveWorkflows() {
+async getActiveWorkflows() {
     await delay(200)
     return workflowsData.filter(w => w.status === "active")
+  },
+
+  async getMarketingCampaigns() {
+    await delay(200)
+    return workflowsData.map(workflow => ({
+      ...workflow,
+      campaignType: this.getCampaignType(workflow.name),
+      expectedROI: Math.floor(Math.random() * 300) + 150,
+      estimatedLeads: Math.floor(Math.random() * 1000) + 200,
+      conversionRate: Math.floor(Math.random() * 15) + 5
+    }))
+  },
+
+  getCampaignType(name) {
+    if (name.toLowerCase().includes('email')) return 'Email Campaign'
+    if (name.toLowerCase().includes('social')) return 'Social Media Campaign'
+    if (name.toLowerCase().includes('lead')) return 'Lead Generation'
+    if (name.toLowerCase().includes('content')) return 'Content Marketing'
+    return 'Growth Campaign'
   }
 }

@@ -1,15 +1,27 @@
 import { NavLink } from "react-router-dom"
 import { motion } from "framer-motion"
 import ApperIcon from "@/components/ApperIcon"
-
+import { useUserMode } from "@/contexts/UserModeContext"
 const Sidebar = ({ isOpen, onClose }) => {
-  const navigation = [
+  const { isMarketer } = useUserMode()
+  
+  const developerNavigation = [
     { name: "Explorer", href: "/explorer", icon: "Search", description: "Discover APIs" },
     { name: "Tester", href: "/tester", icon: "Play", description: "Test endpoints" },
     { name: "Workflows", href: "/workflows", icon: "GitBranch", description: "Build chains" },
     { name: "Recipes", href: "/recipes", icon: "BookOpen", description: "Growth hacks" },
     { name: "Dashboard", href: "/dashboard", icon: "BarChart3", description: "Analytics" }
   ]
+  
+  const marketerNavigation = [
+    { name: "Command Center", href: "/marketing", icon: "Target", description: "Campaign hub" },
+    { name: "Growth Tools", href: "/explorer", icon: "Search", description: "Find tools" },
+    { name: "Campaigns", href: "/workflows", icon: "Megaphone", description: "Manage campaigns" },
+    { name: "Recipe Library", href: "/recipes", icon: "BookOpen", description: "Growth recipes" },
+    { name: "Test Center", href: "/tester", icon: "TestTube", description: "Try tools" }
+  ]
+  
+  const navigation = isMarketer ? marketerNavigation : developerNavigation
   
   // Desktop Sidebar
   const DesktopSidebar = () => (
@@ -62,14 +74,17 @@ const Sidebar = ({ isOpen, onClose }) => {
             ))}
           </nav>
           
-          <div className="px-4 mt-6">
+<div className="px-4 mt-6">
             <div className="glass-card rounded-lg p-4 bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20">
               <div className="flex items-center space-x-2 mb-2">
                 <ApperIcon name="Rocket" size={16} className="text-primary" />
-                <span className="text-sm font-medium">Growth Tip</span>
+                <span className="text-sm font-medium">{isMarketer ? "Marketing Tip" : "Growth Tip"}</span>
               </div>
               <p className="text-xs text-gray-400">
-                Chain 3+ APIs together for maximum growth impact. Try weather + social + payments!
+                {isMarketer 
+                  ? "Start with email capture recipes - they have 200%+ ROI and are beginner-friendly!"
+                  : "Chain 3+ APIs together for maximum growth impact. Try weather + social + payments!"
+                }
               </p>
             </div>
           </div>

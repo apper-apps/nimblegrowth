@@ -11,6 +11,8 @@ import Error from "@/components/ui/Error"
 import Empty from "@/components/ui/Empty"
 import { apiService } from "@/services/api/apiService"
 
+import { useUserMode } from "@/contexts/UserModeContext"
+
 const Explorer = () => {
   const [apis, setApis] = useState([])
   const [filteredApis, setFilteredApis] = useState([])
@@ -19,6 +21,7 @@ const Explorer = () => {
   const [searchQuery, setSearchQuery] = useState("")
   const [activeCategory, setActiveCategory] = useState("all")
   const navigate = useNavigate()
+  const { isMarketer } = useUserMode()
 
   const categories = [
     { label: "All", value: "all" },
@@ -95,12 +98,14 @@ const Explorer = () => {
         animate={{ opacity: 1, y: 0 }}
         className="text-center"
       >
-        <h1 className="text-4xl font-display font-bold gradient-text mb-4">
-          API Explorer
+<h1 className="text-4xl font-display font-bold gradient-text mb-4">
+          {isMarketer ? "Growth Tools Library" : "API Explorer"}
         </h1>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-          Discover 200+ high-impact APIs for growth hacking, marketing automation, and creative workflows.
-          Test endpoints, build integrations, and scale your growth experiments.
+          {isMarketer 
+            ? "Discover 200+ marketing tools and growth APIs. Build campaigns, track performance, and automate your marketing without code."
+            : "Discover 200+ high-impact APIs for growth hacking, marketing automation, and creative workflows. Test endpoints, build integrations, and scale your growth experiments."
+          }
         </p>
       </motion.div>
 
@@ -112,8 +117,8 @@ const Explorer = () => {
         className="glass-card rounded-xl p-6"
       >
         <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-          <SearchBar
-            placeholder="Search APIs by name, category, or use case..."
+<SearchBar
+            placeholder={isMarketer ? "Search marketing tools, social media, analytics..." : "Search APIs by name, category, or use case..."}
             onSearch={handleSearch}
             className="flex-1 max-w-md"
           />

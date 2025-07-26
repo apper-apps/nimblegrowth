@@ -44,7 +44,7 @@ export const testHistoryService = {
     return testHistoryData.filter(test => test.status === "error")
   },
 
-  async getTestStats() {
+async getTestStats() {
     await delay(200)
     const total = testHistoryData.length
     const successful = testHistoryData.filter(t => t.status === "success").length
@@ -57,6 +57,17 @@ export const testHistoryService = {
       failed,
       successRate: (successful / total) * 100,
       avgDuration: Math.round(avgDuration)
+    }
+  },
+
+  async getMarketingMetrics() {
+    await delay(200)
+    const stats = await this.getTestStats()
+    return {
+      ...stats,
+      conversions: Math.floor(stats.successful * 0.7),
+      leads: Math.floor(stats.total * 2.3),
+      roi: Math.floor(stats.successRate * 2.5)
     }
   }
 }

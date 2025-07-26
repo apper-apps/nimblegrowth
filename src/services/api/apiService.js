@@ -37,12 +37,34 @@ export const apiService = {
     return filtered
   },
 
-  async getTrendingAPIs() {
+async getTrendingAPIs() {
     await delay(200)
     return apisData
       .filter(api => api.popularity >= 80)
       .sort((a, b) => b.popularity - a.popularity)
       .slice(0, 8)
+  },
+
+  async getMarketingAPIs() {
+    await delay(200)
+    const marketingCategories = ['Social', 'Analytics', 'Content', 'E-commerce']
+    return apisData
+      .filter(api => marketingCategories.includes(api.category))
+      .map(api => ({
+        ...api,
+        marketingUseCase: this.getMarketingUseCase(api.category),
+        expectedROI: Math.floor(Math.random() * 200) + 100
+      }))
+  },
+
+  getMarketingUseCase(category) {
+    const useCases = {
+      'Social': 'Social media automation & engagement',
+      'Analytics': 'Customer insights & conversion tracking',
+      'Content': 'Content creation & optimization',
+      'E-commerce': 'Sales funnel & payment automation'
+    }
+    return useCases[category] || 'Growth automation'
   },
 
   async getAPIsByCategory(category) {

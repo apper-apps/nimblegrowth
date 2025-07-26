@@ -1,9 +1,11 @@
 import { useState } from "react"
 import Sidebar from "@/components/organisms/Sidebar"
 import Header from "@/components/organisms/Header"
+import { useUserMode } from "@/contexts/UserModeContext"
 
 const Layout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const { userMode } = useUserMode()
   
   const handleSearch = (query) => {
     console.log("Search query:", query)
@@ -12,11 +14,11 @@ const Layout = ({ children }) => {
   return (
     <div className="h-screen flex overflow-hidden bg-background">
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-      
-      <div className="flex flex-col w-0 flex-1 overflow-hidden">
+<div className="flex flex-col w-0 flex-1 overflow-hidden">
         <Header 
           onMenuClick={() => setSidebarOpen(true)}
           onSearch={handleSearch}
+          userMode={userMode}
         />
         
         <main className="flex-1 relative overflow-y-auto focus:outline-none">

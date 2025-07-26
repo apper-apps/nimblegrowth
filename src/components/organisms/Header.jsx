@@ -4,8 +4,11 @@ import ApperIcon from "@/components/ApperIcon"
 import Button from "@/components/atoms/Button"
 import SearchBar from "@/components/molecules/SearchBar"
 
+import { useUserMode } from "@/contexts/UserModeContext"
+
 const Header = ({ onMenuClick, onSearch }) => {
   const [notifications] = useState(3)
+  const { userMode, toggleUserMode, isMarketer } = useUserMode()
   
   return (
     <header className="lg:pl-64 bg-background/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-30">
@@ -30,7 +33,20 @@ const Header = ({ onMenuClick, onSearch }) => {
             </div>
           </div>
           
-          <div className="flex items-center space-x-4">
+<div className="flex items-center space-x-4">
+            {/* User Mode Toggle */}
+            <div className="flex items-center space-x-2">
+              <Button
+                variant={isMarketer ? "primary" : "ghost"}
+                size="sm"
+                onClick={toggleUserMode}
+                className="text-xs"
+              >
+                <ApperIcon name={isMarketer ? "Target" : "Code"} size={14} className="mr-1" />
+                {isMarketer ? "Marketer" : "Developer"}
+              </Button>
+            </div>
+            
             {/* Quick Actions */}
             <motion.div 
               className="hidden md:flex items-center space-x-2"
@@ -39,7 +55,7 @@ const Header = ({ onMenuClick, onSearch }) => {
             >
               <Button variant="ghost" size="sm" className="text-xs">
                 <ApperIcon name="Plus" size={14} className="mr-1" />
-                New Workflow
+                {isMarketer ? "New Campaign" : "New Workflow"}
               </Button>
               <Button variant="outline" size="sm" className="text-xs">
                 <ApperIcon name="Import" size={14} className="mr-1" />
