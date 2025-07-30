@@ -12,9 +12,9 @@ import { UserModeProvider } from "@/contexts/UserModeContext"
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-background text-white font-body">
-        <Layout>
-<UserModeProvider>
+<div className="min-h-screen bg-background text-white font-body">
+        <UserModeProvider>
+          <Layout>
             <Routes>
               <Route path="/" element={<Navigate to="/explorer" replace />} />
               <Route path="/explorer" element={<Explorer />} />
@@ -24,9 +24,9 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/marketing" element={<MarketingDashboard />} />
             </Routes>
-          </UserModeProvider>
-        </Layout>
-        <ToastContainer 
+          </Layout>
+        </UserModeProvider>
+        <ToastContainer
           position="top-right"
           autoClose={3000}
           hideProgressBar={false}
